@@ -15,8 +15,6 @@ double Function::_evaluate(vector<double> inputs) {
 }
 
 double Ackley::_evaluate(vector<double> inputs) {
-    cout << "ackley" << endl;
-
     double sum1 = 0, sum2 = 0, exp1, exp2;
 
     for (int i = 0; i < dimension; i++) {

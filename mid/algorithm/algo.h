@@ -18,7 +18,7 @@ protected:
     double bestScore;
     int dimension;
     const double INTERVAL_RANGE = 30;
-    Function evaluate_function;
+    Function *evaluate_function;
     vector<vector<double>> population;
     vector<double> objective_values;
     vector<double> global_best;

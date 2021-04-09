@@ -18,8 +18,7 @@ PSO::PSO(Function *evaluate_function,
     this->dimension = dimension;
     this->objective_values = vector<double>(population_size, 0.0);
     this->individual_bests = vector<double>(population_size, DBL_MAX);
-    cout << evaluate_function->name << endl;
-    // this->evaluate_function = evaluate_function;
+    this->evaluate_function = evaluate_function;
     // TODO: Seedfile
     // Initialize population
     vector<double> t;

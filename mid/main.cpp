@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <exception>
 #include "function/functions.h"
 #include "algorithm/de.h"
 #include "algorithm/pso.h"
@@ -19,19 +18,19 @@ bool exist(const std::string& name) {
     return false;
 }
 
-Ackley get_function(char* func, int dimension) {
+Function* get_function(char* func, int dimension) {
     if (strcmp(func, "ackley") == 0)
-        return Ackley(dimension);
-    // if (strcmp(func, "rastrigin") == 0)
-    //     return Rastrigin(dimension);
-    // if (strcmp(func, "sphere") == 0)
-    //     return Sphere(dimension);
-    // if (strcmp(func, "rosenbrock") == 0)
-    //     return Rosenbrock(dimension);
-    // if (strcmp(func, "michalewicz") == 0)
-    //     return Michalewicz(dimension);
+        return new Ackley(dimension);
+    if (strcmp(func, "rastrigin") == 0)
+        return new Rastrigin(dimension);
+    if (strcmp(func, "sphere") == 0)
+        return new Sphere(dimension);
+    if (strcmp(func, "rosenbrock") == 0)
+        return new Rosenbrock(dimension);
+    if (strcmp(func, "michalewicz") == 0)
+        return new Michalewicz(dimension);
     
-    throw logic_error("Function not found.");
+    throw "Function not found.";
 }
 
 int main(int argc, char *argv[]) {
@@ -44,7 +43,7 @@ int main(int argc, char *argv[]) {
     srand(time(NULL));
 
     string algorithm = "";
-    Function function;
+    Function *function;
     int runs = 30;
     int bits = 100;
     int iterations = 100;
@@ -64,14 +63,10 @@ int main(int argc, char *argv[]) {
      */
     algorithm = argv[1];
     function = get_function(argv[2], atoi(argv[3]));
-    function = Ackley(dimension);
     dimension = atoi(argv[3]);
     runs = atoi(argv[4]);
     iterations = atoi(argv[5]);
     seedfile = argv[6];
-    cout << function.name << endl;
-    string aa;
-    cin >> aa;
 
     if (strcmp(algorithm.c_str(), "pso") == 0) {
         population_size = atoi(argv[7]);
@@ -79,9 +74,7 @@ int main(int argc, char *argv[]) {
         c1 = atof(argv[9]);
         c2 = atof(argv[10]);
         for (int run = 0; run < runs; run++) {
-            cout << "init pso" << endl;
-            PSO pso(&function, rand(), dimension, population_size, w, c1, c2, seedfile.c_str());
-            cout << "run pso" << endl;
+            PSO pso(function, rand(), dimension, population_size, w, c1, c2, seedfile.c_str());
             results.push_back(pso.run(iterations));
             cout << "RUN " << run + 1 << " Done." << endl;
         }

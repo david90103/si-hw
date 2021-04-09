@@ -13,47 +13,45 @@ using namespace std;
 class Function {
 protected:
     int dimension;
+    virtual double _evaluate(vector<double> inputs);
 public:
-    string name = "Function";
-    Function() { cout << "func ctor" << endl;}
+    Function() {}
     Function(int dimension);
     void setDimension(int dim);
     double evaluate(vector<double> inputs);
-    virtual double _evaluate(vector<double> inputs);
 };
 
 class Ackley : public Function {
 protected:
-public:
-    string name = "ackley";
-    Ackley(int dimension) : Function(dimension) { cout << "ackley ctor" << endl;}
     double _evaluate(vector<double> inputs) override;
+public:
+    Ackley(int dimension) : Function(dimension) {}
 };
 
 class Rastrigin : public Function {
 protected:
-    double _evaluate(vector<double> inputs);
+    double _evaluate(vector<double> inputs) override;
 public:
     Rastrigin(int dimension) : Function(dimension) {}
 };
 
 class Sphere : public Function {
 protected:
-    double _evaluate(vector<double> inputs);
+    double _evaluate(vector<double> inputs) override;
 public:
     Sphere(int dimension) : Function(dimension) {}
 };
 
 class Rosenbrock : public Function {
 protected:
-    double _evaluate(vector<double> inputs);
+    double _evaluate(vector<double> inputs) override;
 public:
     Rosenbrock(int dimension) : Function(dimension) {}
 };
 
 class Michalewicz : public Function {
 protected:
-    double _evaluate(vector<double> inputs);
+    double _evaluate(vector<double> inputs) override;
 public:
     Michalewicz(int dimension) : Function(dimension) {}
 };
