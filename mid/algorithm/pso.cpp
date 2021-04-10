@@ -25,12 +25,14 @@ PSO::PSO(Function *evaluate_function,
     vector<double> temp(dimension, 0);
     for (int i = 0; i < population_size; i++) {
         t.clear();
-        for (int j = 0; j < dimension; j++) {
-            t.push_back(-INTERVAL_RANGE + (double) rand() / RAND_MAX * (2 * INTERVAL_RANGE));
-        }
+        for (int j = 0; j < dimension; j++)
+            t.push_back(evaluate_function->lbound() + (double) rand() / RAND_MAX * (2 * evaluate_function->ubound()));
         population.push_back(t);
         individual_bests_pos.push_back(temp);
-        velocities.push_back(temp);
+        t.clear();
+        for (int j = 0; j < dimension; j++)
+            t.push_back(evaluate_function->lbound() + (double) rand() / RAND_MAX * (2 * evaluate_function->ubound()));
+        velocities.push_back(t);
     }
 }
 

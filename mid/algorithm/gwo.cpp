@@ -23,9 +23,8 @@ GWO::GWO(Function *evaluate_function,
     vector<double> t;
     for (int i = 0; i < population_size; i++) {
         t.clear();
-        for (int j = 0; j < dimension; j++) {
-            t.push_back(-INTERVAL_RANGE + (double) rand() / RAND_MAX * (2 * INTERVAL_RANGE));
-        }
+        for (int j = 0; j < dimension; j++)
+            t.push_back(evaluate_function->lbound() + (double) rand() / RAND_MAX * (2 * evaluate_function->ubound()));
         population.push_back(t);
     }
 }
@@ -102,6 +101,9 @@ vector<double> GWO::run(int iterations) {
         result.push_back(bestScore);
     }
 
+    // for (int i = 0 ; i < dimension; i++) 
+    //     cout << global_best[i] << " ";
+    // cout << endl;
     cout << "Score: " << bestScore << endl;
     return result;
 }

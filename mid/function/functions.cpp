@@ -14,6 +14,14 @@ double Function::_evaluate(vector<double> inputs) {
     throw logic_error("Implementation of evaluate function is not defined.");
 }
 
+double Function::lbound() {
+    return lower_bound;
+}
+
+double Function::ubound() {
+    return upper_bound;
+}
+
 double Ackley::_evaluate(vector<double> inputs) {
     double sum1 = 0, sum2 = 0, exp1, exp2;
 

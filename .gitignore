@@ -36,3 +36,5 @@ draw
 # Result files
 output*.txt
 *param_test*
+output*/
+*.png

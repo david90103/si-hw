@@ -20,9 +20,8 @@ DE::DE(Function *evaluate_function,
     vector<double> t;
     for (int i = 0; i < population_size; i++) {
         t.clear();
-        for (int j = 0; j < dimension; j++) {
-            t.push_back(-INTERVAL_RANGE + (double) rand() / RAND_MAX * (2 * INTERVAL_RANGE));
-        }
+        for (int j = 0; j < dimension; j++)
+            t.push_back(evaluate_function->lbound() + (double) rand() / RAND_MAX * (2 * evaluate_function->ubound()));
         population.push_back(t);
         objective_values.push_back(evaluate(t));
     }
