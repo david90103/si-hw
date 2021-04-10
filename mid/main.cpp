@@ -62,7 +62,9 @@ int main(int argc, char *argv[]) {
     /**
      * Parameters:
      * pso [function] [dimension] [runs] [iterations] [seedfile] [population size] [w] [c1] [c2]
-     *
+     * de  [function] [dimension] [runs] [iterations] [seedfile] [population size] [crossover rate] [f]
+     * gwo [function] [dimension] [runs] [iterations] [seedfile] [population size]
+     * 
      */
     algorithm = argv[1];
     function = get_function(argv[2], atoi(argv[3]));

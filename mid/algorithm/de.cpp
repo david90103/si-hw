@@ -1,4 +1,4 @@
-#include "./de.h"
+#include "de.h"
 
 
 DE::DE(Function *evaluate_function, 
