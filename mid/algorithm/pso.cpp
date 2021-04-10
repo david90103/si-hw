@@ -82,9 +82,6 @@ vector<double> PSO::run(int iterations) {
         // }
     }
 
-    // for (int i = 0; i < dimension; i++) {
-    //     cout << global_best[i] << " ";
-    // }
     cout << "Score: " << bestScore << endl;
     return result;
 }

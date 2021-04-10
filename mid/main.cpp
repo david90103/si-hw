@@ -56,6 +56,9 @@ int main(int argc, char *argv[]) {
     double c1 = 1.0;
     double c2= 1.0;
 
+    double crossover_rate = 1.0;
+    double f = 1.0;
+
     /**
      * Parameters:
      * pso [function] [dimension] [runs] [iterations] [seedfile] [population size] [w] [c1] [c2]
@@ -76,6 +79,26 @@ int main(int argc, char *argv[]) {
         for (int run = 0; run < runs; run++) {
             PSO pso(function, rand(), dimension, population_size, w, c1, c2, seedfile.c_str());
             results.push_back(pso.run(iterations));
+            cout << "RUN " << run + 1 << " Done." << endl;
+        }
+    }
+
+    if (strcmp(algorithm.c_str(), "de") == 0) {
+        population_size = atoi(argv[7]);
+        crossover_rate = atof(argv[8]);
+        f = atof(argv[9]);
+        for (int run = 0; run < runs; run++) {
+            DE de(function, rand(), dimension, population_size, crossover_rate, f, seedfile.c_str());
+            results.push_back(de.run(iterations));
+            cout << "RUN " << run + 1 << " Done." << endl;
+        }
+    }
+
+    if (strcmp(algorithm.c_str(), "gwo") == 0) {
+        population_size = atoi(argv[7]);
+        for (int run = 0; run < runs; run++) {
+            GWO gwo(function, rand(), dimension, population_size, seedfile.c_str());
+            results.push_back(gwo.run(iterations));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
