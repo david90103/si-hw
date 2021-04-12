@@ -125,7 +125,7 @@ int main(int argc, char *argv[]) {
     } while (exist(filename));
     fp = fopen(filename.c_str(), "w+");
     for (int i = 0; i < avg.size(); i++) {
-        fprintf(fp, "%d %.20f\n", i + 1, avg[i]);
+        fprintf(fp, "%d %.20e\n", i + 1, avg[i]);
     }
     fclose(fp);
 

@@ -32,34 +32,34 @@ set origin 0,0
 set multiplot layout 2,3 columnsfirst scale 1.1,0.9
 
 set title "Ackley" font ",16"
-#set yrange[0:0.0001]
+#set yrange[0:0.000000000001]
 plot 'output_gwo_1.txt'     t 'GWO' 		w l ls 1, 	\
-	 'output_de_1.txt' 	    t 'DE' 			w l ls 2, 	\
-	 'output_pso_1.txt'     t 'PSO' 		w l ls 3
+     'output_de_1.txt' 	   t 'DE' 		w l ls 2, 	\
+     'output_pso_1.txt'     t 'PSO' 		w l ls 3
 
 set title "Rastrigin" font ",16"
-#set yrange[0:300]
+#set yrange[0:20]
 plot 'output_gwo_2.txt'     t 'GWO' 		w l ls 1, 	\
-	 'output_de_2.txt' 	    t 'DE' 			w l ls 2, 	\
-	 'output_pso_2.txt'     t 'PSO' 		w l ls 3
+     'output_de_2.txt' 	   t 'DE' 		w l ls 2, 	\
+     'output_pso_2.txt'     t 'PSO' 		w l ls 3
 
 set title "Sphere" font ",16"
-#set yrange[0:0.0000000001]
+#set yrange[0:0.000000000000000001]
 plot 'output_gwo_3.txt'     t 'GWO' 		w l ls 1, 	\
-	 'output_de_3.txt' 	    t 'DE' 			w l ls 2, 	\
-	 'output_pso_3.txt'     t 'PSO' 		w l ls 3
+     'output_de_3.txt' 	   t 'DE' 		w l ls 2, 	\
+     'output_pso_3.txt'     t 'PSO' 		w l ls 3
 
 set title "Rosenbrock" font ",16"
-#set yrange[95:110]
+#set yrange[20:40]
 plot 'output_gwo_4.txt'     t 'GWO' 		w l ls 1, 	\
-	 'output_de_4.txt' 	    t 'DE' 			w l ls 2, 	\
-	 'output_pso_4.txt'     t 'PSO' 		w l ls 3
+     'output_de_4.txt' 	   t 'DE' 		w l ls 2, 	\
+     'output_pso_4.txt'     t 'PSO' 		w l ls 3
 
 set title "Michalewicz" font ",16"
 #set yrange[*:*]
 plot 'output_gwo_5.txt'     t 'GWO' 		w l ls 1, 	\
-	 'output_de_5.txt' 	    t 'DE' 			w l ls 2, 	\
-	 'output_pso_5.txt'     t 'PSO' 		w l ls 3
+     'output_de_5.txt' 	   t 'DE' 		w l ls 2, 	\
+     'output_pso_5.txt'     t 'PSO' 		w l ls 3
 
 
 unset multiplot

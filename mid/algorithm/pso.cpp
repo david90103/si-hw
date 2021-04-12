@@ -39,7 +39,9 @@ PSO::PSO(Function *evaluate_function,
 void PSO::updateVelocity() {
     for (int i = 0; i < population_size; i++) {
         for (int j = 0; j < dimension; j++) {
-            velocities[i][j] = w * population[i][j] + c1 * (double) rand() / RAND_MAX * (individual_bests_pos[i][j] - population[i][j]) + c2 * (double) rand() / RAND_MAX * (global_best[j] - population[i][j]);
+            velocities[i][j] = w * velocities[i][j] 
+                + c1 * ((double) rand() / RAND_MAX) * (individual_bests_pos[i][j] - population[i][j]) 
+                + c2 * ((double) rand() / RAND_MAX) * (global_best[j] - population[i][j]);
         }
     }
 }
