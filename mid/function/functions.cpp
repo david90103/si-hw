@@ -7,6 +7,9 @@ Function::Function(int dimension) {
 
 double Function::evaluate(vector<double> inputs) {
     assert(dimension == inputs.size());
+    // Shift every dimension
+    // for (int i = 0; i < inputs.size(); i++)
+    //     inputs[i] -= shift_value;
     return _evaluate(inputs);
 }
 

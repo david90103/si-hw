@@ -9,9 +9,11 @@ private:
     double alpha_score;
     double beta_score;
     double delta_score;
+    double gamma_score;
     vector<double> alpha_position;
     vector<double> beta_position;
     vector<double> delta_position;
+    vector<double> gamma_position;
     double a;
     inline void update_a(int iter, int max_iter);
     void update_position();

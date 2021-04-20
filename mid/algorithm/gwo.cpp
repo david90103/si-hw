@@ -14,9 +14,11 @@ GWO::GWO(Function *evaluate_function,
     this->alpha_score = DBL_MAX;
     this->beta_score = DBL_MAX;
     this->delta_score = DBL_MAX;
+    this->gamma_score = DBL_MAX;
     this->alpha_position = vector<double>(dimension, 0);
     this->beta_position = vector<double>(dimension, 0);
     this->delta_position = vector<double>(dimension, 0);
+    this->gamma_position = vector<double>(dimension, 0);
     this->a = 2;
     // TODO: Seedfile
     // Initialize population
@@ -39,10 +41,8 @@ void GWO::update_position() {
             // alpha
             double r1 = static_cast<double>(rand()) / RAND_MAX;
             double r2 = static_cast<double>(rand()) / RAND_MAX;
-
             double A1 = 2 * a * r1 - a;
             double C1 = 2 * r2;
-
             double D_alpha = abs(C1 * alpha_position[j] - population[i][j]);
             double X1 = alpha_position[j] - A1 * D_alpha;
 
@@ -57,12 +57,18 @@ void GWO::update_position() {
             // delta
             r1 = static_cast<double>(rand()) / RAND_MAX;
             r2 = static_cast<double>(rand()) / RAND_MAX;
-
             double A3 = 2. * a * r1 - a;
             double C3 = 2 * r2;
-
             double D_delta = abs(C3 * delta_position[j] - population[i][j]);
             double X3 = delta_position[j] - A3 * D_delta;
+
+            // gamma
+            // r1 = static_cast<double>(rand()) / RAND_MAX;
+            // r2 = static_cast<double>(rand()) / RAND_MAX;
+            // double A4 = 2. * a * r1 - a;
+            // double C4 = 2 * r2;
+            // double D_gamma = abs(C4 * gamma_position[j] - population[i][j]);
+            // double X4 = gamma_position[j] - A4 * D_gamma;
 
             population[i][j] = (X1 + X2 + X3) / 3;
         }
@@ -93,6 +99,11 @@ vector<double> GWO::run(int iterations) {
                 delta_score = fitness;
                 delta_position = population[i];
             }
+
+            // if (fitness > alpha_score && fitness > beta_score && fitness > delta_score && fitness < gamma_score) {
+            //     gamma_score = fitness;
+            //     gamma_position = population[i];
+            // }
         }
         update_a(iter, iterations);
         update_position();

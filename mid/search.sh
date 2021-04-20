@@ -1,16 +1,18 @@
 #!/bin/bash
 
 DIMENSION=${1:-30}
+# DIMENSION=30
 RUN=30
-POPULATION=${2:-10}
-ITERATION=1000
+POPULATION=${2:-30}
+# POPULATION=40
+ITERATION=500
 
 # ./main pso [function] [dimension] [runs] [iterations] [seedfile] [population size] [w] [c1] [c2]
-./main pso ackley $DIMENSION $RUN $ITERATION "" $POPULATION 0.5 2 2 
-./main pso rastrigin $DIMENSION $RUN $ITERATION "" $POPULATION 0.5 2 2 
-./main pso sphere $DIMENSION $RUN $ITERATION "" $POPULATION 0.5 2 2 
-./main pso rosenbrock $DIMENSION $RUN $ITERATION "" $POPULATION 0.5 2 2 
-./main pso michalewicz $DIMENSION $RUN $ITERATION "" $POPULATION 0.5 2 2 
+./main pso ackley $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
+./main pso rastrigin $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
+./main pso sphere $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
+./main pso rosenbrock $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
+./main pso michalewicz $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
 
 ./main de ackley $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.6
 ./main de rastrigin $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.6
