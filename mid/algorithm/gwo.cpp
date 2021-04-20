@@ -35,6 +35,10 @@ inline void GWO::update_a(int iter, int max_iter) {
     a = 2 - iter * (2 / static_cast<double>(max_iter));
 }
 
+
+// Update position of every wolf according to alpha beta delta position
+// Gamma is used in the experiment which we test if four leading wolves 
+// is better than three defined by the paper.
 void GWO::update_position() {
     for (int i = 0; i < population_size; i++) {
         for (int j = 0; j < dimension; j++) {
@@ -70,6 +74,7 @@ void GWO::update_position() {
             // double D_gamma = abs(C4 * gamma_position[j] - population[i][j]);
             // double X4 = gamma_position[j] - A4 * D_gamma;
 
+            // Move the current solution towards the geometric center of the three wolves
             population[i][j] = (X1 + X2 + X3) / 3;
         }
     }
@@ -80,6 +85,7 @@ vector<double> GWO::run(int iterations) {
         for (int i = 0; i < population_size; i++) {
             double fitness = evaluate(population[i]);
 
+            // Update the three leading wolves according to their fitness value
             if (fitness < bestScore) {
                 bestScore = fitness;
                 global_best = population[i];
@@ -105,7 +111,10 @@ vector<double> GWO::run(int iterations) {
             //     gamma_position = population[i];
             // }
         }
+        // Linear reduce the value of a, this will make the
+        // search more converge at the end of iterations
         update_a(iter, iterations);
+
         update_position();
         
         // Record and log
