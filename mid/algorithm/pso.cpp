@@ -70,6 +70,7 @@ void PSO::evaluatePopulation() {
     for (int i = 0; i < population_size; i++) {
         if (objective_values[i] < individual_bests[i]) {
             individual_bests[i] = objective_values[i];
+            individual_bests_pos[i] = population[i];
         }
     }
 }
