@@ -24,7 +24,7 @@ public:
        int dimension, 
        int population_size, 
        char const *seedfile);
-    vector<double> run(int iterations);
+    vector<double> run(int iterations, int max_evaluation);
 };
 
 #endif // GWO_H_

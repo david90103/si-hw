@@ -54,39 +54,36 @@ void PSO::updatePosition() {
     }
 }
 
-void PSO::evaluatePopulation() {
-    // Calculate objective values
-    for (int i = 0; i < population_size; i++) {
-        objective_values[i] = evaluate(population[i]);
-    }
-    // Update global best
-    for (int i = 0;i < population_size; i++) {
-        if (objective_values[i] < bestScore) {
-            bestScore = objective_values[i];
-            global_best = population[i];
-        }
-    }
-    // Update individual best
-    for (int i = 0; i < population_size; i++) {
-        if (objective_values[i] < individual_bests[i]) {
-            individual_bests[i] = objective_values[i];
-            individual_bests_pos[i] = population[i];
-        }
-    }
-}
-
-vector<double> PSO::run(int iterations) {
+vector<double> PSO::run(int iterations, int max_evaluation) {
     for (int iter = 1; iter <= iterations; iter++) {
-        evaluatePopulation();
+        // Calculate objective values
+        for (int i = 0; i < population_size; i++) {
+            objective_values[i] = evaluate(population[i]);
+            if (evaluations > max_evaluation)
+                goto evaluation_exceeded;
+        }
+        // Update global best
+        for (int i = 0;i < population_size; i++) {
+            if (objective_values[i] < bestScore) {
+                bestScore = objective_values[i];
+                global_best = population[i];
+            }
+        }
+        // Update individual best
+        for (int i = 0; i < population_size; i++) {
+            if (objective_values[i] < individual_bests[i]) {
+                individual_bests[i] = objective_values[i];
+                individual_bests_pos[i] = population[i];
+            }
+        }
         updateVelocity();
         updatePosition();
-        // Record and log
-        result.push_back(bestScore);
         // if (iter % 10 == 0) {
         //     cout << "Iteration: " << iter << " Best score: " << bestScore << endl;
         // }
     }
 
+    evaluation_exceeded:
     cout << "Score: " << bestScore << endl;
     return result;
 }

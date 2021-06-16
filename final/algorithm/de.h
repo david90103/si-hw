@@ -19,7 +19,7 @@ public:
        double crossover_rate, 
        double f, 
        char const *seedfile);
-    vector<double> run(int iterations);
+    vector<double> run(int iterations, int max_evaluation);
 };
 
 #endif // DE_H_

@@ -80,10 +80,12 @@ void GWO::update_position() {
     }
 }
 
-vector<double> GWO::run(int iterations) {
+vector<double> GWO::run(int iterations, int max_evaluation) {
     for (int iter = 1; iter <= iterations; iter++) {
         for (int i = 0; i < population_size; i++) {
             double fitness = evaluate(population[i]);
+            if (evaluations > max_evaluation)
+                goto evaluation_exceeded;
 
             // Update the three leading wolves according to their fitness value
             if (fitness < bestScore) {
@@ -115,12 +117,10 @@ vector<double> GWO::run(int iterations) {
         // search more converge at the end of iterations
         update_a(iter, iterations);
 
-        update_position();
-        
-        // Record and log
-        result.push_back(bestScore);
+        update_position();        
     }
 
+    evaluation_exceeded:
     // for (int i = 0 ; i < dimension; i++) 
     //     cout << global_best[i] << " ";
     // cout << endl;

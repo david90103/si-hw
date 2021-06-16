@@ -17,6 +17,7 @@ class Algorithm {
 protected:
     double bestScore;
     int dimension;
+    int evaluations;
     const double INTERVAL_RANGE = 30;
     Function *evaluate_function;
     vector<vector<double>> population;
@@ -25,10 +26,10 @@ protected:
     vector<double> result;
 
 public:
-    Algorithm() {}
+    Algorithm() { evaluations = 0; }
     double evaluate(vector<double> inputs);
     double get_best_score();
-    virtual vector<double> run(int iterations) = 0;
+    virtual vector<double> run(int iterations, int max_evaluation) = 0;
 };
 
 #endif // ALGO_H_

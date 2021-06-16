@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
         c2 = atof(argv[10]);
         for (int run = 0; run < runs; run++) {
             PSO pso(function, rand(), dimension, population_size, w, c1, c2, seedfile.c_str());
-            results.push_back(pso.run(iterations));
+            results.push_back(pso.run(iterations, 1000000));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
@@ -118,7 +118,7 @@ int main(int argc, char *argv[]) {
         f = atof(argv[9]);
         for (int run = 0; run < runs; run++) {
             DE de(function, rand(), dimension, population_size, crossover_rate, f, seedfile.c_str());
-            results.push_back(de.run(iterations));
+            results.push_back(de.run(iterations, 1000000));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
@@ -127,7 +127,7 @@ int main(int argc, char *argv[]) {
         population_size = atoi(argv[7]);
         for (int run = 0; run < runs; run++) {
             GWO gwo(function, rand(), dimension, population_size, seedfile.c_str());
-            results.push_back(gwo.run(iterations));
+            results.push_back(gwo.run(iterations, 1000000));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
@@ -136,7 +136,7 @@ int main(int argc, char *argv[]) {
         population_size = atoi(argv[7]);
         for (int run = 0; run < runs; run++) {
             GWOEX gwoex(function, rand(), dimension, population_size, seedfile.c_str());
-            results.push_back(gwoex.run(iterations));
+            results.push_back(gwoex.run(iterations, 1000000));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }

@@ -24,7 +24,7 @@ public:
        int dimension, 
        int population_size, 
        char const *seedfile) : GWO(evaluate_function, randseed, dimension, population_size, seedfile) {};
-    vector<double> run(int iterations);
+    vector<double> run(int iterations, int max_evaluation);
 };
 
 #endif // GWOEX_H_

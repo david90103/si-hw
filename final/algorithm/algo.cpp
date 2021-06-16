@@ -5,5 +5,7 @@ double Algorithm::get_best_score() {
 }
 
 double Algorithm::evaluate(vector<double> inputs) {
+    evaluations++;
+    result.push_back(bestScore);
     return evaluate_function->evaluate(inputs);
 }

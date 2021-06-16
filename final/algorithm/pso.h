@@ -25,7 +25,7 @@ public:
         double c1, 
         double c2, 
         char const *seedfile);
-    vector<double> run(int iterations);
+    vector<double> run(int iterations, int max_evaluation);
 };
 
 #endif // PSO_H_

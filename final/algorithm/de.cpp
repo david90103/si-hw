@@ -57,13 +57,16 @@ vector<vector<double>> DE::crossover(vector<vector<double>> population, vector<v
     return u_arr;
 }
 
-vector<double> DE::run(int iterations) {
+vector<double> DE::run(int iterations, int max_evaluation) {
     for (int iter = 1; iter <= iterations; iter++) {
         vector<vector<double>> v_arr = mutation(population);
         vector<vector<double>> u_arr = crossover(population, v_arr);
         // Selection
         for (int i = 0; i < population_size; i++) {
             double eval = evaluate(u_arr[i]);
+            if (evaluations > max_evaluation)
+                goto evaluation_exceeded;
+
             if (eval <= objective_values[i]) {
                 objective_values[i] = eval;
                 population[i] = u_arr[i];
@@ -73,10 +76,9 @@ vector<double> DE::run(int iterations) {
                 global_best = u_arr[i];
             }
         }
-        // Record and log
-        result.push_back(bestScore);
     }
 
+    evaluation_exceeded:
     cout << "Score: " << bestScore << endl;
     return result;
 }
