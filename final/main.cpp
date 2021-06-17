@@ -19,7 +19,7 @@ bool exist(const std::string& name) {
     return false;
 }
 
-Function* get_function(char* func, int dimension) {
+Function* get_function(const char* func, int dimension) {
     if (strcmp(func, "Ackley") == 0)
         return new Ackley(dimension);
     if (strcmp(func, "Rastrigin") == 0)
@@ -70,6 +70,7 @@ int main(int argc, char *argv[]) {
     srand(time(NULL));
 
     string algorithm = "";
+    string function_name = "";
     Function *function;
     int runs = 30;
     int bits = 100;
@@ -86,6 +87,8 @@ int main(int argc, char *argv[]) {
     double crossover_rate = 1.0;
     double f = 1.0;
 
+    const int MAX_EVALUATIONS = 30000;
+
     /**
      * Parameters:
      * pso [function] [dimension] [runs] [iterations] [seedfile] [population size] [w] [c1] [c2]
@@ -94,7 +97,8 @@ int main(int argc, char *argv[]) {
      * 
      */
     algorithm = argv[1];
-    function = get_function(argv[2], atoi(argv[3]));
+    function_name = argv[2];
+    function = get_function(function_name.c_str(), atoi(argv[3]));
     dimension = atoi(argv[3]);
     runs = atoi(argv[4]);
     iterations = atoi(argv[5]);
@@ -107,7 +111,7 @@ int main(int argc, char *argv[]) {
         c2 = atof(argv[10]);
         for (int run = 0; run < runs; run++) {
             PSO pso(function, rand(), dimension, population_size, w, c1, c2, seedfile.c_str());
-            results.push_back(pso.run(iterations, 1000000));
+            results.push_back(pso.run(iterations, MAX_EVALUATIONS));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
@@ -118,7 +122,7 @@ int main(int argc, char *argv[]) {
         f = atof(argv[9]);
         for (int run = 0; run < runs; run++) {
             DE de(function, rand(), dimension, population_size, crossover_rate, f, seedfile.c_str());
-            results.push_back(de.run(iterations, 1000000));
+            results.push_back(de.run(iterations, MAX_EVALUATIONS));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
@@ -127,7 +131,7 @@ int main(int argc, char *argv[]) {
         population_size = atoi(argv[7]);
         for (int run = 0; run < runs; run++) {
             GWO gwo(function, rand(), dimension, population_size, seedfile.c_str());
-            results.push_back(gwo.run(iterations, 1000000));
+            results.push_back(gwo.run(iterations, MAX_EVALUATIONS));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
@@ -136,7 +140,7 @@ int main(int argc, char *argv[]) {
         population_size = atoi(argv[7]);
         for (int run = 0; run < runs; run++) {
             GWOEX gwoex(function, rand(), dimension, population_size, seedfile.c_str());
-            results.push_back(gwoex.run(iterations, 1000000));
+            results.push_back(gwoex.run(iterations, MAX_EVALUATIONS));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
@@ -157,7 +161,7 @@ int main(int argc, char *argv[]) {
     // Output to file
     do {
         file_index++;
-        filename = "output_" + algorithm + "_" + to_string(file_index) + ".txt";
+        filename = "output_" + function_name + "_" + algorithm + "_" + to_string(file_index) + ".txt";
     } while (exist(filename));
     fp = fopen(filename.c_str(), "w+");
     for (int i = 0; i < avg.size(); i++) {

@@ -1,6 +1,6 @@
 CC:=g++
 EXE:=main
-FLAGS:=-Wall -O3 -static-libgcc -std=c11
+FLAGS:=-Wall -g -O3 -static-libgcc -std=c11
 SUBDIRS = algorithm function
 
 all: dep

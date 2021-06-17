@@ -1,29 +1,26 @@
 #!/bin/bash
 
-DIMENSION=${1:-30}
-# DIMENSION=30
+DIMENSION=${1:-40}
 RUN=30
-POPULATION=${2:-30}
-# POPULATION=40
-ITERATION=500
+POPULATION=${2:-40}
+ITERATION=50000
+FUNCTIONS=("Ackley" "Rastrigin" "Sphere" "Rosenbrock" "Michalewicz" "Griewank" "Schwefel" "SumSquares" "Zakharov" "Powell")
+FUNCTIONS_TWO_DIM=("Schaffer" "Bohachevsky_1" "Bohachevsky_2" "Bohachevsky_3" "Booth" "ThreeHump" "DeJong" "Beale")
 
-# ./main pso [function] [dimension] [runs] [iterations] [seedfile] [population size] [w] [c1] [c2]
-./main pso Ackley $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
-./main pso Rastrigin $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
-./main pso Sphere $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
-./main pso Rosenbrock $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
-./main pso Michalewicz $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
+for f in "${FUNCTIONS[@]}"
+do
+    ./main gwoex $f $DIMENSION $RUN $ITERATION "" $POPULATION
+    ./main gwo   $f $DIMENSION $RUN $ITERATION "" $POPULATION
+    ./main pso   $f $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
+    ./main de    $f $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.6
+done
 
-./main de Ackley $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.6
-./main de Rastrigin $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.6
-./main de Sphere $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.6
-./main de Rosenbrock $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.6
-./main de Michalewicz $DIMENSION $RUN $ITERATION "" $POPULATION 0.4 0.6
-
-./main gwo Ackley $DIMENSION $RUN $ITERATION "" $POPULATION
-./main gwo Rastrigin $DIMENSION $RUN $ITERATION "" $POPULATION
-./main gwo Sphere $DIMENSION $RUN $ITERATION "" $POPULATION
-./main gwo Rosenbrock $DIMENSION $RUN $ITERATION "" $POPULATION
-./main gwo Michalewicz $DIMENSION $RUN $ITERATION "" $POPULATION
+# for f in "${FUNCTIONS_TWO_DIM[@]}"
+# do
+#     ./main gwoex $f 2 $RUN $ITERATION "" $POPULATION
+#     ./main gwo   $f 2 $RUN $ITERATION "" $POPULATION
+#     ./main pso   $f 2 $RUN $ITERATION "" $POPULATION 0.4 0.8 0.8
+#     ./main de    $f 2 $RUN $ITERATION "" $POPULATION 0.4 0.6
+# done
 
 echo "Search script done."

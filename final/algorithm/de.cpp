@@ -31,11 +31,18 @@ vector<vector<double>> DE::mutation(vector<vector<double>> population) {
     vector<vector<double>> v_arr;
     for (int i = 0; i < population.size(); i++) {
         vector<double> temp;
+        double t;
         int r1 = rand() % population_size;
         int r2 = rand() % population_size;
         int r3 = rand() % population_size;
-        for (int j = 0; j < dimension; j++)
-            temp.push_back(population[r1][j] + f * (population[r2][j] - population[r3][j]));
+        for (int j = 0; j < dimension; j++) {
+            t = population[r1][j] + f * (population[r2][j] - population[r3][j]);
+            if (t > evaluate_function->ubound())
+                t = evaluate_function->ubound();
+            if (t < evaluate_function->lbound())
+                t = evaluate_function->lbound();
+            temp.push_back(t);
+        }
         v_arr.push_back(temp);
     }
     return v_arr;

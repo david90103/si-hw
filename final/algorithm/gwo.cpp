@@ -35,7 +35,6 @@ inline void GWO::update_a(int iter, int max_iter) {
     a = 2 - iter * (2 / static_cast<double>(max_iter));
 }
 
-
 // Update position of every wolf according to alpha beta delta position
 // Gamma is used in the experiment which we test if four leading wolves 
 // is better than three defined by the paper.
@@ -76,6 +75,10 @@ void GWO::update_position() {
 
             // Move the current solution towards the geometric center of the three wolves
             population[i][j] = (X1 + X2 + X3) / 3;
+            if (population[i][j] > evaluate_function->ubound())
+                population[i][j] = evaluate_function->ubound();
+            if (population[i][j] < evaluate_function->lbound())
+                population[i][j] = evaluate_function->lbound();
         }
     }
 }

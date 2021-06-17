@@ -2,8 +2,8 @@
 
 current_directory=$(pwd)
 
-dims=( 30 100 )
-pops=( 10 50 )
+dims=( 40 )
+pops=( 40 )
 
 make clean dep all
 
@@ -12,7 +12,7 @@ do
     for j in "${pops[@]}"
     do  
         dir=output/output_dim${i}_pop${j}
-        mkdir $dir
+        mkdir -p $dir
 
         cp main $dir
         cp search.sh $dir
