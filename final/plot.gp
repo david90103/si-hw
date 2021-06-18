@@ -24,7 +24,7 @@ set style line 5 lc rgb '#f29122' pt 6 ps 1 lt 1 lw 2 # --- orange
 set key top right
 set key font ",12"
 
-set xlabel 'Evaluations' font ",16"
+set xlabel 'Evaluations' font ",14"
 set ylabel ' ' font ",16"
 
 set size 1,1
@@ -76,7 +76,7 @@ plot 'output_Griewank_gwo_1.txt'        t 'GWO'        w l ls 1,  \
      'output_Griewank_pso_1.txt'        t 'PSO'        w l ls 4
 
 set title "Schwefel" font ",16"
-set yrange[0:16000]
+set yrange[4000:16000]
 plot 'output_Schwefel_gwo_1.txt'        t 'GWO'        w l ls 1,  \
      'output_Schwefel_gwoex_1.txt'      t 'SRGWO'      w l ls 2,  \
      'output_Schwefel_de_1.txt'         t 'DE'         w l ls 3,  \

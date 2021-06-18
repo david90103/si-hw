@@ -2,7 +2,7 @@
 
 DIMENSION=${1:-40}
 RUN=30
-POPULATION=${2:-40}
+POPULATION=${2:-30}
 ITERATION=50000
 FUNCTIONS=("Ackley" "Rastrigin" "Sphere" "Rosenbrock" "Michalewicz" "Griewank" "Schwefel" "SumSquares" "Zakharov" "Powell")
 FUNCTIONS_TWO_DIM=("Schaffer" "Bohachevsky_1" "Bohachevsky_2" "Bohachevsky_3" "Booth" "ThreeHump" "DeJong" "Beale")

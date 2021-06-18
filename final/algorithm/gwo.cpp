@@ -7,6 +7,7 @@ GWO::GWO(Function *evaluate_function,
        int population_size, 
        char const *seedfile) {
     srand(randseed);
+    this->randseed = randseed;
     this->bestScore = DBL_MAX;
     this->population_size = population_size;
     this->dimension = dimension;
@@ -118,7 +119,7 @@ vector<double> GWO::run(int iterations, int max_evaluation) {
         }
         // Linear reduce the value of a, this will make the
         // search more converge at the end of iterations
-        update_a(iter, iterations);
+        update_a(evaluations, max_evaluation);
 
         update_position();        
     }

@@ -15,6 +15,7 @@ using namespace std;
 
 class Algorithm {
 protected:
+    int randseed;
     double bestScore;
     int dimension;
     int evaluations;

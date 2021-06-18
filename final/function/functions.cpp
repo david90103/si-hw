@@ -76,12 +76,12 @@ double Michalewicz::_evaluate(vector<double> x) {
 
 double Griewank::_evaluate(vector<double> x) {
     double sum = 0;
-    double pruduct = 0;
+    double pruduct = 1;
     for (int i = 0; i < dimension; i++) {
         sum += pow(x[i], 2) / 4000;
         pruduct *= cos(x[i] / sqrt(i + 1));
     }
-    return sum - pruduct + 1;
+    return 1 + sum - pruduct;
 }
 
 double Schaffer::_evaluate(vector<double> x) {
