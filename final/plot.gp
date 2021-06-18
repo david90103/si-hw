@@ -34,6 +34,7 @@ set multiplot layout 3,4 scale 1.1,0.9
 set xrange[1:30000]
 
 set title "Ackley" font ",16"
+set xrange[1:30000]
 set yrange[0:25]
 plot 'output_Ackley_gwo_1.txt'          t 'GWO'        w l ls 1,  \
      'output_Ackley_gwoex_1.txt'        t 'SRGWO'      w l ls 2,  \
@@ -41,6 +42,7 @@ plot 'output_Ackley_gwo_1.txt'          t 'GWO'        w l ls 1,  \
      'output_Ackley_pso_1.txt'          t 'PSO'        w l ls 4
 
 set title "Rastrigin" font ",16"
+set xrange[1:30000]
 set yrange[0:1000]
 plot 'output_Rastrigin_gwo_1.txt'       t 'GWO'        w l ls 1,  \
      'output_Rastrigin_gwoex_1.txt'     t 'SRGWO'      w l ls 2,  \
@@ -48,6 +50,7 @@ plot 'output_Rastrigin_gwo_1.txt'       t 'GWO'        w l ls 1,  \
      'output_Rastrigin_pso_1.txt'       t 'PSO'        w l ls 4
 
 set title "Sphere" font ",16"
+set xrange[1:30000]
 set yrange[0:10]
 plot 'output_Sphere_gwo_1.txt'          t 'GWO'        w l ls 1,  \
      'output_Sphere_gwoex_1.txt'        t 'SRGWO'      w l ls 2,  \
@@ -55,6 +58,7 @@ plot 'output_Sphere_gwo_1.txt'          t 'GWO'        w l ls 1,  \
      'output_Sphere_pso_1.txt'          t 'PSO'        w l ls 4
 
 set title "Rosenbrock" font ",16"
+set xrange[1:30000]
 set yrange[20:5000]
 plot 'output_Rosenbrock_gwo_1.txt'      t 'GWO'        w l ls 1,  \
      'output_Rosenbrock_gwoex_1.txt'    t 'SRGWO'      w l ls 2,  \
@@ -62,6 +66,7 @@ plot 'output_Rosenbrock_gwo_1.txt'      t 'GWO'        w l ls 1,  \
      'output_Rosenbrock_pso_1.txt'      t 'PSO'        w l ls 4
 
 set title "Michalewicz" font ",16"
+set xrange[1:100000]
 set yrange[*:*]
 plot 'output_Michalewicz_gwo_1.txt'     t 'GWO'        w l ls 1,  \
      'output_Michalewicz_gwoex_1.txt'   t 'SRGWO'      w l ls 2,  \
@@ -69,6 +74,7 @@ plot 'output_Michalewicz_gwo_1.txt'     t 'GWO'        w l ls 1,  \
      'output_Michalewicz_pso_1.txt'     t 'PSO'        w l ls 4
 
 set title "Griewank" font ",16"
+set xrange[1:30000]
 set yrange[0:600]
 plot 'output_Griewank_gwo_1.txt'        t 'GWO'        w l ls 1,  \
      'output_Griewank_gwoex_1.txt'      t 'SRGWO'      w l ls 2,  \
@@ -76,13 +82,15 @@ plot 'output_Griewank_gwo_1.txt'        t 'GWO'        w l ls 1,  \
      'output_Griewank_pso_1.txt'        t 'PSO'        w l ls 4
 
 set title "Schwefel" font ",16"
-set yrange[4000:16000]
+set xrange[1:100000]
+set yrange[:18000]
 plot 'output_Schwefel_gwo_1.txt'        t 'GWO'        w l ls 1,  \
      'output_Schwefel_gwoex_1.txt'      t 'SRGWO'      w l ls 2,  \
      'output_Schwefel_de_1.txt'         t 'DE'         w l ls 3,  \
      'output_Schwefel_pso_1.txt'        t 'PSO'        w l ls 4
 
 set title "SumSquares" font ",16"
+set xrange[1:30000]
 set yrange[0:10000]
 plot 'output_SumSquares_gwo_1.txt'      t 'GWO'        w l ls 1,  \
      'output_SumSquares_gwoex_1.txt'    t 'SRGWO'      w l ls 2,  \
@@ -90,6 +98,7 @@ plot 'output_SumSquares_gwo_1.txt'      t 'GWO'        w l ls 1,  \
      'output_SumSquares_pso_1.txt'      t 'PSO'        w l ls 4
 
 set title "Zakharov" font ",16"
+set xrange[1:30000]
 set yrange[0:2000]
 plot 'output_Zakharov_gwo_1.txt'        t 'GWO'        w l ls 1,  \
      'output_Zakharov_gwoex_1.txt'      t 'SRGWO'      w l ls 2,  \
@@ -97,6 +106,7 @@ plot 'output_Zakharov_gwo_1.txt'        t 'GWO'        w l ls 1,  \
      'output_Zakharov_pso_1.txt'        t 'PSO'        w l ls 4
 
 set title "Powell" font ",16"
+set xrange[1:30000]
 set yrange[0:20000]
 plot 'output_Powell_gwo_1.txt'          t 'GWO'        w l ls 1,  \
      'output_Powell_gwoex_1.txt'        t 'SRGWO'      w l ls 2,  \

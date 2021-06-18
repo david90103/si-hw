@@ -74,7 +74,8 @@ int main(int argc, char *argv[]) {
     Function *function;
     int runs = 30;
     int bits = 100;
-    int iterations = 100;
+    int iterations = INT32_MAX;
+    int evaluations = 30000;
     int dimension = 2;
     string seedfile = "";
 
@@ -84,10 +85,9 @@ int main(int argc, char *argv[]) {
     double c1 = 1.0;
     double c2= 1.0;
 
+    // DE parameters
     double crossover_rate = 1.0;
     double f = 1.0;
-
-    const int MAX_EVALUATIONS = 30000;
 
     /**
      * Parameters:
@@ -102,45 +102,46 @@ int main(int argc, char *argv[]) {
     dimension = atoi(argv[3]);
     runs = atoi(argv[4]);
     iterations = atoi(argv[5]);
-    seedfile = argv[6];
+    evaluations = atoi(argv[6]);
+    seedfile = argv[7];
 
     if (strcmp(algorithm.c_str(), "pso") == 0) {
-        population_size = atoi(argv[7]);
-        w = atof(argv[8]);
-        c1 = atof(argv[9]);
-        c2 = atof(argv[10]);
+        population_size = atoi(argv[8]);
+        w = atof(argv[9]);
+        c1 = atof(argv[10]);
+        c2 = atof(argv[11]);
         for (int run = 0; run < runs; run++) {
             PSO pso(function, rand(), dimension, population_size, w, c1, c2, seedfile.c_str());
-            results.push_back(pso.run(iterations, MAX_EVALUATIONS));
+            results.push_back(pso.run(iterations, evaluations));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
 
     if (strcmp(algorithm.c_str(), "de") == 0) {
-        population_size = atoi(argv[7]);
-        crossover_rate = atof(argv[8]);
-        f = atof(argv[9]);
+        population_size = atoi(argv[8]);
+        crossover_rate = atof(argv[9]);
+        f = atof(argv[10]);
         for (int run = 0; run < runs; run++) {
             DE de(function, rand(), dimension, population_size, crossover_rate, f, seedfile.c_str());
-            results.push_back(de.run(iterations, MAX_EVALUATIONS));
+            results.push_back(de.run(iterations, evaluations));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
 
     if (strcmp(algorithm.c_str(), "gwo") == 0) {
-        population_size = atoi(argv[7]);
+        population_size = atoi(argv[8]);
         for (int run = 0; run < runs; run++) {
             GWO gwo(function, rand(), dimension, population_size, seedfile.c_str());
-            results.push_back(gwo.run(iterations, MAX_EVALUATIONS));
+            results.push_back(gwo.run(iterations, evaluations));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
 
     if (strcmp(algorithm.c_str(), "gwoex") == 0) {
-        population_size = atoi(argv[7]);
+        population_size = atoi(argv[8]);
         for (int run = 0; run < runs; run++) {
             GWOEX gwoex(function, rand(), dimension, population_size, seedfile.c_str());
-            results.push_back(gwoex.run(iterations, MAX_EVALUATIONS));
+            results.push_back(gwoex.run(iterations, evaluations));
             cout << "RUN " << run + 1 << " Done." << endl;
         }
     }
