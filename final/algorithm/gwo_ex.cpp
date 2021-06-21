@@ -128,7 +128,7 @@ void GWOEX::reduce_population(int evaluations, int max_evaluation) {
     vector<double> remove_value_list = vector<double>(remove_size, DBL_MAX);
     for (int i = 0; i < prev_size; i++) {
         for (int j = 0; j < remove_size; j++) {
-            if (fitness_list[i] < remove_value_list[j]) {
+            if (fitness_list[i] < remove_value_list[j] || isinf(fitness_list[i])) {
                 // Move back worse values before insert
                 for (int k = remove_size - 1; k > j; k--) {
                     remove_idx_list[k] = remove_idx_list[k - 1];

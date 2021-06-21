@@ -37,14 +37,14 @@ class Rastrigin : public Function {
 protected:
     double _evaluate(vector<double> x) override;
 public:
-    Rastrigin(int dimension) : Function(dimension) { lower_bound = -5.12; upper_bound = 5.12; shift_value = 0.5; }
+    Rastrigin(int dimension) : Function(dimension) { lower_bound = -5.12; upper_bound = 5.12; shift_value = 0.2; }
 };
 
 class Sphere : public Function {
 protected:
     double _evaluate(vector<double> x) override;
 public:
-    Sphere(int dimension) : Function(dimension) { lower_bound = -5.12; upper_bound = 5.12; shift_value = 0.5; }
+    Sphere(int dimension) : Function(dimension) { lower_bound = -5.12; upper_bound = 5.12; shift_value = 0.2; }
 };
 
 class Rosenbrock : public Function {
@@ -58,7 +58,7 @@ class Michalewicz : public Function {
 protected:
     double _evaluate(vector<double> x) override;
 public:
-    Michalewicz(int dimension) : Function(dimension) { lower_bound = 0; upper_bound = M_PI; shift_value = M_PI / 10; }
+    Michalewicz(int dimension) : Function(dimension) { lower_bound = 0; upper_bound = M_PI; shift_value = M_PI / 20; }
 };
 
 class Griewank : public Function {
